@@ -20,10 +20,9 @@ export function HeroSection() {
                     className="mb-10 flex justify-center w-full"
                 >
                     <img
-                        src="/logo.png"
+                        src="/logo-transparent.png"
                         alt="Wabyte Logo"
-                        className="w-48 h-48 md:w-60 md:h-60 object-contain drop-shadow-[0_0_25px_rgba(64,224,208,0.4)]"
-                        style={{ mixBlendMode: 'screen' }}
+                        className="w-72 h-72 md:w-96 md:h-96 object-contain drop-shadow-[0_0_35px_rgba(64,224,208,0.4)]"
                     />
                 </motion.div>
 

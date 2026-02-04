@@ -46,7 +46,7 @@ export function Navbar() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <img src="/logo.png" alt="Wabyte Logo" className="w-10 h-10 object-contain" />
+                        <img src="/logo-transparent.png" alt="Wabyte Logo" className="w-10 h-10 object-contain" />
                         <span>wabyte</span>
                     </motion.a>
 
