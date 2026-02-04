@@ -1,10 +1,8 @@
 /**
  * Tech Stack Scene - High Fidelity Illustration
  * Uses a generated hyper-realistic image with interactive hotspots
- * FIXED: Tooltip appears NEXT to the hotspot (proximity)
- * FIXED: Hotspot indicators blink Cyan <-> Orange
- * FIXED: Added AI Models hotspot on the back
- * FIXED: Added Circuit Pattern Background
+ * FIXED: New Image CLEAN VERSION (No Red, No Error)
+ * FIXED: Reverted Hotspot colors to Cyan/Orange
  */
 
 'use client';
@@ -50,61 +48,65 @@ export function TechStackScene({ onHover }: TechStackSceneProps) {
     // Helper to get tech data
     const getTechData = (techName: string) => TECHNOLOGIES.find(t => t.name === techName);
 
-    // Hotspots definitions
+    // Hotspots definitions - RECALIBRATED FOR BRAND CLEAN IMAGE
+    // Layout Estimation: 
+    // - Main Laptop (Center/Front)
+    // - Secondary Laptop (Left)
+    // - Monitor (Right)
+    // - Server Towers (Back Center/Left)
+    // - Cloud (Top Right)
     const hotspots = [
         {
-            id: 'ai',
-            tech: 'Python',
-            top: '50%', left: '55%', width: '12%', height: '30%',
-            label: 'AI Core',
-            position: 'right'
-        },
-        {
-            id: 'ai-back',
-            tech: 'AI Models',
-            top: '40%', left: '58%', width: '10%', height: '20%',
-            label: 'Neural Net',
-            position: 'right'
-        },
-        {
-            id: 'laptop',
-            tech: 'React',
-            top: '55%', left: '42%', width: '12%', height: '15%',
+            id: 'laptop-main',
+            tech: 'React', // Main Laptop (Center)
+            top: '60%', left: '45%', width: '15%', height: '20%',
             label: 'Frontend',
-            position: 'left'
+            position: 'right'
         },
         {
-            id: 'cloud',
-            tech: 'Google Cloud',
-            top: '20%', left: '72%', width: '15%', height: '20%',
-            label: 'Cloud',
+            id: 'monitor',
+            tech: 'TypeScript', // Desktop Monitor (Right)
+            top: '35%', left: '70%', width: '15%', height: '25%',
+            label: 'Logic',
             position: 'left'
         },
         {
             id: 'server',
-            tech: 'Node.js',
-            top: '40%', left: '78%', width: '12%', height: '35%',
+            tech: 'Node.js', // Server Tower (Back Center/Left)
+            top: '25%', left: '40%', width: '10%', height: '30%',
             label: 'Backend',
+            position: 'right'
+        },
+        {
+            id: 'cloud',
+            tech: 'Google Cloud', // Cloud Icon (Top Right)
+            top: '15%', left: '80%', width: '12%', height: '20%',
+            label: 'Cloud',
             position: 'left'
         },
         {
-            id: 'analytics',
-            tech: 'TypeScript',
-            top: '25%', left: '25%', width: '20%', height: '25%',
-            label: 'Logic',
+            id: 'laptop-sec',
+            tech: 'Python', // Secondary Laptop (Left)
+            top: '50%', left: '20%', width: '12%', height: '15%',
+            label: 'AI Core',
             position: 'right'
+        },
+        {
+            id: 'ai-models',
+            tech: 'AI Models', // Floating Screens (Right Side)
+            top: '55%', left: '85%', width: '10%', height: '15%',
+            label: 'Neural Net',
+            position: 'left'
         }
     ];
 
     return (
         <div
             ref={containerRef}
-            className="w-full h-full relative overflow-hidden flex items-center justify-center perspective-1000 bg-[#002b6b]"
+            className="w-full h-full relative overflow-hidden flex items-center justify-center perspective-1000 bg-[#001845]"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
-            {/* BACKGROUND LAYERS */}
-
             {/* 1. Base Gradient */}
             <div
                 className="absolute inset-0 z-0"
@@ -119,9 +121,10 @@ export function TechStackScene({ onHover }: TechStackSceneProps) {
                 backgroundSize: '200px 200px'
             }} />
 
-            {/* 2. INTERACTIVE CONTENT */}
+            {/* 3. INTERACTIVE CONTENT */}
+            {/* Aspect-video for 16:9 native fill */}
             <motion.div
-                className="relative z-10 h-full aspect-square m-auto"
+                className="relative z-10 w-full h-full aspect-video m-auto"
                 animate={{
                     rotateX: mousePos.y * 2,
                     rotateY: mousePos.x * -2,
@@ -131,10 +134,10 @@ export function TechStackScene({ onHover }: TechStackSceneProps) {
             >
                 <div className="relative w-full h-full">
                     <Image
-                        src="/tech-stack.png"
-                        alt="High Fidelity Tech Stack"
+                        src="/tech-stack-brand-clean.png"
+                        alt="Custom Brand Tech Stack Clean"
                         fill
-                        className="object-contain drop-shadow-2xl"
+                        className="object-cover"
                         priority
                         quality={100}
                     />
@@ -151,7 +154,7 @@ export function TechStackScene({ onHover }: TechStackSceneProps) {
                                 onMouseEnter={() => handleHotspotEnter(spot)}
                                 onMouseLeave={handleHotspotLeave}
                             >
-                                {/* Visual Indicator - Blinking Cyan/Orange */}
+                                {/* Visual Indicator - Blinking Cyan/Orange (Reverted) */}
                                 {!isActive && (
                                     <>
                                         <motion.div
