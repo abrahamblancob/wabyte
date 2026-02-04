@@ -42,9 +42,10 @@ export const TECHNOLOGIES = [
     { name: 'TypeScript', category: 'Language' },
     { name: 'Node.js', category: 'Backend' },
     { name: 'Python', category: 'Backend' },
-    { name: 'AWS', category: 'Cloud' },
+    { name: 'Google Cloud', category: 'Cloud' },
     { name: 'Docker', category: 'DevOps' },
     { name: 'Kubernetes', category: 'DevOps' },
+    { name: 'AI Models', category: 'Artificial Intelligence' },
 ] as const;
 
 export const METRICS = {

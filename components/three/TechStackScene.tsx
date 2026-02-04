@@ -1,12 +1,17 @@
 /**
- * Tech Stack 3D Scene
- * Interactive isometric view of technology blocks
+ * Tech Stack Scene - High Fidelity Illustration
+ * Uses a generated hyper-realistic image with interactive hotspots
+ * FIXED: Tooltip appears NEXT to the hotspot (proximity)
+ * FIXED: Hotspot indicators blink Cyan <-> Orange
+ * FIXED: Added AI Models hotspot on the back
+ * FIXED: Added Circuit Pattern Background
  */
 
 'use client';
 
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import { useState, useRef } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import { TECHNOLOGIES } from '@/lib/constants/content';
 
 interface TechStackSceneProps {
@@ -15,267 +20,197 @@ interface TechStackSceneProps {
 
 export function TechStackScene({ onHover }: TechStackSceneProps) {
     const containerRef = useRef<HTMLDivElement>(null);
-    const sceneRef = useRef<THREE.Scene | null>(null);
-    const cameraRef = useRef<THREE.OrthographicCamera | null>(null);
-    const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-    const raycasterRef = useRef<THREE.Raycaster>(new THREE.Raycaster());
-    const mouseRef = useRef<THREE.Vector2>(new THREE.Vector2(-1000, -1000));
-    const blocksRef = useRef<THREE.Mesh[]>([]);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
 
-    useEffect(() => {
+    const handleMouseMove = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
-        const container = containerRef.current;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        setMousePos({ x, y });
+    };
 
-        // Scene setup
-        const scene = new THREE.Scene();
-        sceneRef.current = scene;
+    const handleMouseLeave = () => {
+        setMousePos({ x: 0, y: 0 });
+        onHover(null);
+        setActiveHotspot(null);
+    };
 
-        // Orthographic camera
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-        const aspect = width / height;
-        const frustumSize = 14; // Zoomed IN (smaller frustum = larger objects)
+    const handleHotspotEnter = (spot: { id: string, tech: string }) => {
+        onHover(spot.tech);
+        setActiveHotspot(spot.id);
+    };
 
-        const camera = new THREE.OrthographicCamera(
-            frustumSize * aspect / -2,
-            frustumSize * aspect / 2,
-            frustumSize / 2,
-            frustumSize / -2,
-            1,
-            1000
-        );
+    const handleHotspotLeave = () => {
+        onHover(null);
+        setActiveHotspot(null);
+    };
 
-        // Isometric angle
-        camera.position.set(20, 20, 20);
-        camera.lookAt(0, 0, 0);
-        cameraRef.current = camera;
+    // Helper to get tech data
+    const getTechData = (techName: string) => TECHNOLOGIES.find(t => t.name === techName);
 
-        const renderer = new THREE.WebGLRenderer({
-            antialias: true,
-            alpha: true,
-            preserveDrawingBuffer: true
-        });
-        renderer.setSize(width, height);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Hotspots definitions
+    const hotspots = [
+        {
+            id: 'ai',
+            tech: 'Python',
+            top: '50%', left: '55%', width: '12%', height: '30%',
+            label: 'AI Core',
+            position: 'right'
+        },
+        {
+            id: 'ai-back',
+            tech: 'AI Models',
+            top: '40%', left: '58%', width: '10%', height: '20%',
+            label: 'Neural Net',
+            position: 'right'
+        },
+        {
+            id: 'laptop',
+            tech: 'React',
+            top: '55%', left: '42%', width: '12%', height: '15%',
+            label: 'Frontend',
+            position: 'left'
+        },
+        {
+            id: 'cloud',
+            tech: 'Google Cloud',
+            top: '20%', left: '72%', width: '15%', height: '20%',
+            label: 'Cloud',
+            position: 'left'
+        },
+        {
+            id: 'server',
+            tech: 'Node.js',
+            top: '40%', left: '78%', width: '12%', height: '35%',
+            label: 'Backend',
+            position: 'left'
+        },
+        {
+            id: 'analytics',
+            tech: 'TypeScript',
+            top: '25%', left: '25%', width: '20%', height: '25%',
+            label: 'Logic',
+            position: 'right'
+        }
+    ];
 
-        // Transparent background
-        renderer.setClearColor(0x000000, 0);
+    return (
+        <div
+            ref={containerRef}
+            className="w-full h-full relative overflow-hidden flex items-center justify-center perspective-1000 bg-[#002b6b]"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+        >
+            {/* BACKGROUND LAYERS */}
 
-        container.appendChild(renderer.domElement);
-        rendererRef.current = renderer;
+            {/* 1. Base Gradient */}
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    background: 'radial-gradient(circle at center, #053b87 0%, #001f4d 100%)'
+                }}
+            />
 
-        // Lighting - High intensity for visibility
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-        scene.add(ambientLight);
+            {/* 2. Circuit Pattern Overlay */}
+            <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 L30 10 L30 30 L50 30 M70 10 L90 10 M10 50 L30 50 L50 70 L90 70 M10 90 L30 90' stroke='%2340e0d0' stroke-width='1' fill='none'/%3E%3Ccircle cx='30' cy='30' r='2' fill='%2340e0d0'/%3E%3Ccircle cx='50' cy='70' r='2' fill='%2340e0d0'/%3E%3C/svg%3E")`,
+                backgroundSize: '200px 200px'
+            }} />
 
-        const dirLight = new THREE.DirectionalLight(0xffffff, 1.8);
-        dirLight.position.set(10, 20, 10);
-        scene.add(dirLight);
+            {/* 2. INTERACTIVE CONTENT */}
+            <motion.div
+                className="relative z-10 h-full aspect-square m-auto"
+                animate={{
+                    rotateX: mousePos.y * 2,
+                    rotateY: mousePos.x * -2,
+                    scale: 1.0
+                }}
+                transition={{ type: 'spring', stiffness: 50, damping: 20 }}
+            >
+                <div className="relative w-full h-full">
+                    <Image
+                        src="/tech-stack.png"
+                        alt="High Fidelity Tech Stack"
+                        fill
+                        className="object-contain drop-shadow-2xl"
+                        priority
+                        quality={100}
+                    />
 
-        // Neon lights
-        const blueLight = new THREE.PointLight(0x0055ff, 4, 50);
-        blueLight.position.set(-10, 10, 10);
-        scene.add(blueLight);
+                    {hotspots.map((spot) => {
+                        const techData = getTechData(spot.tech);
+                        const isActive = activeHotspot === spot.id;
 
-        const cyanLight = new THREE.PointLight(0x40e0d0, 4, 50);
-        cyanLight.position.set(10, 10, -10);
-        scene.add(cyanLight);
+                        return (
+                            <div
+                                key={spot.id}
+                                className="absolute z-20 group flex items-center justify-center"
+                                style={{ top: spot.top, left: spot.left, width: spot.width, height: spot.height }}
+                                onMouseEnter={() => handleHotspotEnter(spot)}
+                                onMouseLeave={handleHotspotLeave}
+                            >
+                                {/* Visual Indicator - Blinking Cyan/Orange */}
+                                {!isActive && (
+                                    <>
+                                        <motion.div
+                                            className="absolute w-3 h-3 rounded-full"
+                                            animate={{
+                                                backgroundColor: ['#40e0d0', '#ffaa00', '#40e0d0'], // Cyan -> Orange -> Cyan
+                                                boxShadow: [
+                                                    '0 0 10px rgba(64, 224, 208, 0.6)',
+                                                    '0 0 20px rgba(255, 170, 0, 0.9)',
+                                                    '0 0 10px rgba(64, 224, 208, 0.6)'
+                                                ]
+                                            }}
+                                            transition={{
+                                                duration: 2,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            }}
+                                        />
+                                        <div className="absolute w-full h-full border border-brand-cyan/0 rounded-lg group-hover:border-brand-cyan/30 group-hover:bg-brand-cyan/5 transition-all duration-300 cursor-pointer" />
+                                    </>
+                                )}
 
-        // Create blocks
-        const gridSize = 4;
-        const spacing = 2.4;
-        blocksRef.current = [];
+                                {/* TOOLTIP CARD */}
+                                <AnimatePresence>
+                                    {isActive && techData && (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.8, x: spot.position === 'left' ? 20 : -20 }}
+                                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                                            exit={{ opacity: 0, scale: 0.8 }}
+                                            transition={{ duration: 0.2 }}
+                                            className={`absolute w-64 md:w-72 bg-brand-dark/95 backdrop-blur-xl border border-brand-cyan p-4 rounded-xl shadow-[0_0_30px_rgba(64,224,208,0.3)] z-50 pointer-events-none
+                                ${spot.position === 'left' ? 'right-full mr-4' : 'left-full ml-4'}
+                                top-1/2 -translate-y-1/2
+                            `}
+                                        >
+                                            <div className="flex items-center gap-3 mb-2">
+                                                <div className="w-2 h-2 rounded-full bg-brand-cyan shadow-[0_0_10px_rgba(64,224,208,0.8)]" />
+                                                <h3 className="text-xl font-bold text-brand-white">{techData.name}</h3>
+                                            </div>
+                                            <span className="inline-block px-2 py-0.5 mb-2 text-[10px] font-mono text-brand-dark bg-brand-cyan rounded uppercase tracking-wider">
+                                                {techData.category}
+                                            </span>
+                                            <p className="text-brand-gray text-xs leading-relaxed">
+                                                Componente esencial de nuestra arquitectura digital.
+                                            </p>
 
-        // Texture generation
-        const createTexture = (text: string, category: string) => {
-            const canvas = document.createElement('canvas');
-            canvas.width = 512;
-            canvas.height = 512;
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-                // Background
-                ctx.fillStyle = '#111111';
-                ctx.fillRect(0, 0, 512, 512);
+                                            <div className={`absolute top-1/2 w-4 h-[1px] bg-brand-cyan
+                                ${spot.position === 'left' ? 'left-full' : 'right-full'}
+                             `} />
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        )
+                    })}
+                </div>
+            </motion.div>
 
-                // Border
-                ctx.strokeStyle = '#40e0d0';
-                ctx.lineWidth = 25;
-                ctx.strokeRect(12, 12, 488, 488);
-
-                // Inner glow hint
-                const gradient = ctx.createRadialGradient(256, 256, 100, 256, 256, 256);
-                gradient.addColorStop(0, 'rgba(0, 85, 255, 0.25)');
-                gradient.addColorStop(1, 'rgba(0,0,0,0)');
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, 512, 512);
-
-                // Text - Adjusted for better visibility
-                ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 75px monospace'; // Large font
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(text, 256, 250);
-
-                // Category small text
-                ctx.fillStyle = '#40e0d0';
-                ctx.font = '35px monospace';
-                ctx.fillText(category.toUpperCase(), 256, 330);
-            }
-            return new THREE.CanvasTexture(canvas);
-        };
-
-        TECHNOLOGIES.forEach((tech, index) => {
-            const col = index % 4;
-            const row = Math.floor(index / 4);
-
-            const x = (col - 1.5) * spacing;
-            const z = (row - 0.5) * spacing;
-
-            const texture = createTexture(tech.name, tech.category);
-
-            const geometry = new THREE.BoxGeometry(2, 0.6, 2);
-
-            // Material with Emissive
-            const topMaterial = new THREE.MeshStandardMaterial({
-                map: texture,
-                roughness: 0.2,
-                metalness: 0.8,
-                emissive: 0x001133,
-                emissiveIntensity: 0.6
-            });
-
-            const sideMaterial = new THREE.MeshStandardMaterial({
-                color: 0x222222,
-                roughness: 0.5,
-                metalness: 0.5
-            });
-
-            const materials = [
-                sideMaterial, // right
-                sideMaterial, // left
-                topMaterial,  // top
-                sideMaterial, // bottom
-                sideMaterial, // front
-                sideMaterial, // back
-            ];
-
-            const cube = new THREE.Mesh(geometry, materials);
-            cube.position.set(x, 0, z);
-            cube.userData = {
-                originalY: 0,
-                techName: tech.name,
-                techCategory: tech.category
-            };
-
-            scene.add(cube);
-            blocksRef.current.push(cube);
-
-            // Wireframe highlight
-            const edges = new THREE.EdgesGeometry(geometry);
-            const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x0055ff, transparent: true, opacity: 0.4 }));
-            cube.add(line);
-
-            // Glow plane
-            const glowGeometry = new THREE.PlaneGeometry(2.4, 2.4);
-            const glowMaterial = new THREE.MeshBasicMaterial({
-                map: texture,
-                transparent: true,
-                opacity: 0.2,
-                blending: THREE.AdditiveBlending,
-                side: THREE.DoubleSide
-            });
-            const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-            glow.rotation.x = -Math.PI / 2;
-            glow.position.set(x, -0.4, z);
-            scene.add(glow);
-        });
-
-        // Interaction handlers
-        const onMouseMove = (event: MouseEvent) => {
-            const rect = container.getBoundingClientRect();
-            mouseRef.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-            mouseRef.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-        };
-
-        const onMouseLeave = () => {
-            mouseRef.current.set(-1000, -1000);
-        };
-
-        container.addEventListener('mousemove', onMouseMove);
-        container.addEventListener('mouseleave', onMouseLeave);
-
-        // Animation Loop
-        let hoveredTech: string | null = null;
-        let animationId = 0;
-
-        const animate = () => {
-            if (!rendererRef.current || !sceneRef.current || !cameraRef.current) return;
-
-            raycasterRef.current.setFromCamera(mouseRef.current, cameraRef.current);
-            const intersects = raycasterRef.current.intersectObjects(blocksRef.current);
-
-            let currentHover: string | null = null;
-
-            blocksRef.current.forEach((block) => {
-                const targetY = block.userData.originalY;
-                block.position.y += (targetY - block.position.y) * 0.1;
-            });
-
-            if (intersects.length > 0) {
-                const intersectedBlock = intersects[0].object as THREE.Mesh;
-                const targetY = intersectedBlock.userData.originalY + 1.0;
-                intersectedBlock.position.y += (targetY - intersectedBlock.position.y) * 0.15;
-                currentHover = intersectedBlock.userData.techName;
-            }
-
-            if (currentHover !== hoveredTech) {
-                hoveredTech = currentHover;
-                onHover(hoveredTech);
-                container.style.cursor = currentHover ? 'pointer' : 'default';
-            }
-
-            rendererRef.current.render(sceneRef.current, cameraRef.current);
-            animationId = requestAnimationFrame(animate);
-        };
-
-        animate();
-
-        const handleResize = () => {
-            const w = container.clientWidth;
-            const h = container.clientHeight;
-            const asp = w / h;
-
-            cameraRef.current!.left = -frustumSize * asp / 2;
-            cameraRef.current!.right = frustumSize * asp / 2;
-            cameraRef.current!.top = frustumSize / 2;
-            cameraRef.current!.bottom = -frustumSize / 2;
-            cameraRef.current!.updateProjectionMatrix();
-
-            rendererRef.current!.setSize(w, h);
-        };
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            cancelAnimationFrame(animationId);
-            window.removeEventListener('resize', handleResize);
-            container.removeEventListener('mousemove', onMouseMove);
-            container.removeEventListener('mouseleave', onMouseLeave);
-
-            if (rendererRef.current && container.contains(rendererRef.current.domElement)) {
-                container.removeChild(rendererRef.current.domElement);
-                rendererRef.current.dispose();
-            }
-
-            blocksRef.current.forEach(mesh => {
-                mesh.geometry.dispose();
-                if (Array.isArray(mesh.material)) {
-                    mesh.material.forEach(m => m.dispose());
-                } else {
-                    (mesh.material as THREE.Material).dispose();
-                }
-            });
-        };
-    }, [onHover]);
-
-    return <div ref={containerRef} className="w-full h-full" />;
+            <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/30 pointer-events-none z-10" />
+        </div>
+    );
 }
