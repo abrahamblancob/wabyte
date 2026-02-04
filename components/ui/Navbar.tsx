@@ -33,8 +33,8 @@ export function Navbar() {
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                    ? 'bg-brand-dark/95 backdrop-blur-md shadow-lg shadow-brand-blue/10'
-                    : 'bg-transparent'
+                ? 'bg-brand-dark/95 backdrop-blur-md shadow-lg shadow-brand-blue/10'
+                : 'bg-transparent'
                 }`}
         >
             <div className="container mx-auto px-6">
@@ -42,11 +42,12 @@ export function Navbar() {
                     {/* Logo */}
                     <motion.a
                         href="#inicio"
-                        className="text-2xl font-bold text-brand-white hover:text-brand-cyan transition-colors"
+                        className="flex items-center gap-3 text-2xl font-bold text-brand-white hover:text-brand-cyan transition-colors"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        wabyte
+                        <img src="/logo.png" alt="Wabyte Logo" className="w-10 h-10 object-contain" />
+                        <span>wabyte</span>
                     </motion.a>
 
                     {/* Navigation Links */}

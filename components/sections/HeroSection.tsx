@@ -13,6 +13,20 @@ export function HeroSection() {
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div className="container mx-auto px-6 z-10 text-center">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-10 flex justify-center w-full"
+                >
+                    <img
+                        src="/logo.png"
+                        alt="Wabyte Logo"
+                        className="w-48 h-48 md:w-60 md:h-60 object-contain drop-shadow-[0_0_25px_rgba(64,224,208,0.4)]"
+                        style={{ mixBlendMode: 'screen' }}
+                    />
+                </motion.div>
+
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
