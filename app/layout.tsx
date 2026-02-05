@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Fira_Code } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,6 +34,20 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="es" className={`${inter.variable} ${firaCode.variable}`}>
+            <head>
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-GGSCGL18TR"
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-GGSCGL18TR');
+                    `}
+                </Script>
+            </head>
             <body className={inter.className}>
                 {children}
             </body>
