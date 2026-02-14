@@ -48,4 +48,4 @@ export const SPACING = {
 } as const;
 
 export const BRAND_NAME = 'wabyte';
-export const TAGLINE = 'Ingeniería Fluida para Negocios Digitales';
+export const TAGLINE = 'Desarrollamos SaaS que impulsan tu negocio';

@@ -16,13 +16,13 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-    title: "wabyte | Ingeniería Fluida para Negocios Digitales",
-    description: "Diseñamos arquitecturas de software que resuenan con tus objetivos. Precisión matemática, implementación artística.",
-    keywords: ["desarrollo de software", "arquitectura cloud", "transformación digital", "wabyte"],
+    title: "wabyte | Desarrollamos SaaS que impulsan tu negocio",
+    description: "Convertimos ideas de negocio en plataformas SaaS escalables. Desarrollo de software a medida, arquitectura cloud y productos digitales.",
+    keywords: ["desarrollo saas", "software a medida", "arquitectura cloud", "productos digitales", "wabyte"],
     authors: [{ name: "wabyte" }],
     openGraph: {
-        title: "wabyte | Ingeniería Fluida para Negocios Digitales",
-        description: "Diseñamos arquitecturas de software que resuenan con tus objetivos.",
+        title: "wabyte | Desarrollamos SaaS que impulsan tu negocio",
+        description: "Convertimos ideas de negocio en plataformas SaaS escalables.",
         type: "website",
     },
 };

@@ -20,11 +20,12 @@ export function Navbar() {
     }, []);
 
     const navItems = [
-        { label: 'Inicio', href: '#inicio' },
-        { label: 'Servicios', href: '#servicios' },
-        { label: 'Propuesta de Valor', href: '#propuesta' },
-        { label: 'Tecnologías', href: '#tecnologias' },
-        { label: 'Contacto', href: '#contacto' },
+        { label: 'Inicio', href: '/#inicio' },
+        { label: 'Servicios', href: '/#servicios' },
+        { label: 'Propuesta de valor', href: '/#propuesta' },
+        { label: 'Tecnologías', href: '/#tecnologias' },
+        { label: 'Clientes', href: '/clientes' },
+        { label: 'Contacto', href: '/#contacto' },
     ];
 
     return (
@@ -41,7 +42,7 @@ export function Navbar() {
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <motion.a
-                        href="#inicio"
+                        href="/"
                         className="flex items-center gap-3 text-2xl font-bold text-brand-white hover:text-brand-cyan transition-colors"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}

@@ -64,7 +64,10 @@ export interface Logo3DProps {
 }
 
 export interface ContactFormData {
+    nombre: string;
+    apellido: string;
     email: string;
+    idea: string;
 }
 
 export interface MousePosition {
@@ -75,4 +78,21 @@ export interface MousePosition {
 export interface ScrollProgress {
     progress: number;
     direction: 'up' | 'down';
+}
+
+export interface ClientFeature {
+    name: string;
+    description: string;
+    icon: string;
+}
+
+export interface Client {
+    id: string;
+    name: string;
+    logo: string;
+    website: string;
+    description: string;
+    features: ClientFeature[];
+    brandColor: string;
+    brandColorLight: string;
 }

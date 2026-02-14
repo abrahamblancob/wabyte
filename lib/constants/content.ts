@@ -4,34 +4,34 @@
  */
 
 export const HERO_CONTENT = {
-    headline: 'Ingeniería Fluida para Negocios Digitales',
-    subheadline: 'Diseñamos arquitecturas de software que resuenan con tus objetivos. Precisión matemática, implementación artística.',
-    cta: 'Sincroniza tu Visión',
+    headline: 'Desarrollamos SaaS que impulsan tu negocio',
+    subheadline: 'Convertimos ideas de negocio en plataformas SaaS escalables. Desde la concepción hasta el lanzamiento, construimos el software que tu empresa necesita para crecer.',
+    cta: 'Hablemos de tu idea',
 } as const;
 
 export const VALUE_PROPOSITIONS = [
-    'No escribimos código. Orquestamos frecuencias digitales.',
-    'Cada solución es una onda optimizada para tu mercado.',
-    'Estructuras que fluyen. Resultados que escalan.',
+    'No solo escribimos código. Construimos productos SaaS desde cero.',
+    'Cada plataforma nace de una idea de negocio real, validada y escalable.',
+    'Tu visión, nuestra frecuencia de entrega. Resultados que escalan.',
 ] as const;
 
 export const SERVICES = [
     {
         id: 'custom-software',
-        title: 'Desarrollo de Software a Medida',
-        description: 'Arquitecturas diseñadas específicamente para resonar con tus procesos de negocio. Cada línea de código optimizada para tu frecuencia.',
+        title: 'Desarrollo SaaS a medida',
+        description: 'Diseñamos y construimos plataformas SaaS completas adaptadas a tu modelo de negocio. Desde MVPs hasta productos listos para escalar.',
         icon: 'code',
     },
     {
         id: 'cloud-architecture',
-        title: 'Arquitectura de Soluciones Cloud',
-        description: 'Infraestructuras escalables que fluyen con tu crecimiento. Diseño cloud-native con precisión matemática.',
+        title: 'Arquitectura Cloud & DevOps',
+        description: 'Infraestructuras escalables en la nube que crecen con tu producto. Despliegues automatizados, alta disponibilidad y costos optimizados.',
         icon: 'cloud',
     },
     {
         id: 'digital-transformation',
-        title: 'Transformación Digital',
-        description: 'Sincronizamos tu visión con la tecnología actual. Evolución continua, implementación artística.',
+        title: 'Ideación y desarrollo de productos',
+        description: 'Transformamos ideas de negocio en productos digitales rentables. Validación, prototipado y desarrollo ágil de principio a fin.',
         icon: 'transform',
     },
 ] as const;
@@ -55,23 +55,51 @@ export const METRICS = {
 } as const;
 
 export const CTA_CONTENT = {
-    headline: 'Diseña tu Frecuencia',
-    subheadline: 'Comienza a sincronizar tu visión con la tecnología. Sin fricción entre idea y ejecución.',
-    buttonText: 'Iniciar Conversación',
+    headline: 'Construyamos tu próximo SaaS',
+    subheadline: 'Tienes la idea, nosotros la frecuencia de ejecución. Sin fricción entre concepto y producto.',
+    buttonText: 'Iniciar conversación',
     placeholder: 'tu@email.com',
 } as const;
 
+export const CLIENTS_CONTENT = {
+    headline: 'Nuestros clientes',
+    subheadline: 'Empresas que confían en nuestras soluciones SaaS para impulsar su negocio digital.',
+} as const;
+
+export const CLIENTS = [
+    {
+        id: 'rhino-toyo-parts',
+        name: 'Rhino Toyo Parts',
+        logo: 'https://www.rhinotoyoparts.com/logo.jpg',
+        website: 'https://www.rhinotoyoparts.com',
+        description: 'Proveedor líder de repuestos Toyota en Venezuela. Soluciones tecnológicas SaaS desarrolladas por wabyte para digitalizar su operación.',
+        brandColor: '#1B5E20',
+        brandColorLight: '#4CAF50',
+        features: [
+            {
+                name: 'Rhino Vision',
+                description: 'Herramienta gratuita con IA que identifica repuestos Toyota al instante. Solo sube una foto del repuesto y en segundos sabrás qué pieza es, su estado y con qué modelos es compatible. Luego contactas directo por WhatsApp.',
+                icon: 'vision',
+            },
+            {
+                name: 'Rhino Hub',
+                description: 'Plataforma B2B para proveedores de repuestos Toyota en Venezuela. Sube tu inventario en CSV/Excel, llega a miles de compradores, y nosotros gestionamos logística, pagos y auditoría de stock en tiempo real.',
+                icon: 'hub',
+            },
+        ],
+    },
+] as const;
+
 export const FOOTER_CONTENT = {
-    tagline: 'Arquitectos digitales, no solo ejecutores.',
+    tagline: 'Desarrolladores SaaS. Constructores de ideas de negocio.',
     copyright: `© ${new Date().getFullYear()} wabyte. Todos los derechos reservados.`,
     links: [
-        { label: 'Servicios', href: '#servicios' },
-        { label: 'Tecnologías', href: '#tecnologias' },
-        { label: 'Contacto', href: '#contacto' },
+        { label: 'Servicios', href: '/#servicios' },
+        { label: 'Tecnologías', href: '/#tecnologias' },
+        { label: 'Clientes', href: '/clientes' },
+        { label: 'Contacto', href: '/#contacto' },
     ],
     social: [
-        { platform: 'GitHub', href: '#', icon: 'github' },
-        { platform: 'LinkedIn', href: '#', icon: 'linkedin' },
-        { platform: 'Twitter', href: '#', icon: 'twitter' },
+        { platform: 'Instagram', href: 'https://www.instagram.com/wabyte.tech', icon: 'instagram' },
     ],
 } as const;

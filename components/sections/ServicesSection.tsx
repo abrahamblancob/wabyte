@@ -39,10 +39,10 @@ export function ServicesSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-white mb-4">
-                        Nuestros Servicios
+                        Nuestros servicios
                     </h2>
                     <p className="text-xl text-brand-cyan max-w-2xl mx-auto">
-                        Soluciones diseñadas para resonar con tu negocio
+                        Soluciones SaaS diseñadas para hacer crecer tu negocio
                     </p>
                 </motion.div>
 

@@ -20,7 +20,7 @@ export function ValuePropositionSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-white mb-12">
-                        Arquitectos Digitales, No Solo Ejecutores
+                        Desarrolladores SaaS, constructores de ideas
                     </h2>
 
                     <div className="space-y-6 max-w-4xl mx-auto">
@@ -51,21 +51,21 @@ export function ValuePropositionSection() {
                         <div className="text-5xl md:text-6xl font-bold text-brand-blue mb-2">
                             {METRICS.experience}
                         </div>
-                        <div className="text-xl text-brand-cyan">Años de Experiencia</div>
+                        <div className="text-xl text-brand-cyan">Años de experiencia</div>
                     </div>
 
                     <div className="text-center">
                         <div className="text-5xl md:text-6xl font-bold text-brand-blue mb-2">
                             {METRICS.projects}
                         </div>
-                        <div className="text-xl text-brand-cyan">Proyectos Completados</div>
+                        <div className="text-xl text-brand-cyan">Proyectos completados</div>
                     </div>
 
                     <div className="text-center">
                         <div className="text-5xl md:text-6xl font-bold text-brand-blue mb-2">
                             {METRICS.technologies}
                         </div>
-                        <div className="text-xl text-brand-cyan">Tecnologías Dominadas</div>
+                        <div className="text-xl text-brand-cyan">Tecnologías dominadas</div>
                     </div>
                 </motion.div>
             </div>
