@@ -4,9 +4,14 @@
  */
 
 export const HERO_CONTENT = {
-    headline: 'Desarrollamos SaaS que impulsan tu negocio',
-    subheadline: 'Convertimos ideas de negocio en plataformas SaaS escalables. Desde la concepción hasta el lanzamiento, construimos el software que tu empresa necesita para crecer.',
+    headline: 'Software que entiende tu negocio, no al revés',
+    subheadline: 'Todo tu negocio en un solo lugar. Sin complicaciones, sin curva de aprendizaje, sin tener que cambiar la forma en que ya trabajas. Nosotros nos adaptamos a ti.',
     cta: 'Hablemos de tu idea',
+} as const;
+
+export const PROMISE_CONTENT = {
+    headline: 'Nuestra promesa',
+    promise: 'En menos de 2 semanas tienes toda la información de tu negocio organizada en una sola plataforma, diseñada para cómo tú trabajas.',
 } as const;
 
 export const VALUE_PROPOSITIONS = [
