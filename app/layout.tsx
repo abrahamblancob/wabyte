@@ -16,15 +16,70 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-    title: "wabyte | Desarrollamos SaaS que impulsan tu negocio",
+    metadataBase: new URL("https://www.wabyte.net"),
+    title: {
+        default: "wabyte | Desarrollamos SaaS que impulsan tu negocio",
+        template: "%s | wabyte",
+    },
     description: "Convertimos ideas de negocio en plataformas SaaS escalables. Desarrollo de software a medida, arquitectura cloud y productos digitales.",
-    keywords: ["desarrollo saas", "software a medida", "arquitectura cloud", "productos digitales", "wabyte"],
+    keywords: ["desarrollo saas", "software a medida", "arquitectura cloud", "productos digitales", "wabyte", "desarrollo web chile"],
     authors: [{ name: "wabyte" }],
+    creator: "wabyte",
+    publisher: "wabyte",
+    alternates: {
+        canonical: "/",
+    },
     openGraph: {
         title: "wabyte | Desarrollamos SaaS que impulsan tu negocio",
         description: "Convertimos ideas de negocio en plataformas SaaS escalables.",
+        url: "https://www.wabyte.net",
+        siteName: "wabyte",
+        locale: "es_CL",
         type: "website",
+        images: [
+            {
+                url: "/logo-transparent.png", // Use a specific OG image if available later
+                width: 1200,
+                height: 630,
+                alt: "wabyte - Desarrollo SaaS",
+            },
+        ],
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "wabyte | Desarrollamos SaaS que impulsan tu negocio",
+        description: "Convertimos ideas de negocio en plataformas SaaS escalables.",
+        images: ["/logo-transparent.png"],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
+};
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "wabyte",
+    "url": "https://www.wabyte.net",
+    "logo": "https://www.wabyte.net/logo-transparent.png",
+    "description": "Convertimos ideas de negocio en plataformas SaaS escalables. Desarrollo de software a medida, arquitectura cloud y productos digitales.",
+    "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CL"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "contacto@wabyte.net"
+    }
 };
 
 export default function RootLayout({
@@ -35,6 +90,10 @@ export default function RootLayout({
     return (
         <html lang="es" className={`${inter.variable} ${firaCode.variable}`}>
             <head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
                 {/* Google Tag Manager */}
                 <Script id="google-tag-manager" strategy="afterInteractive">
                     {`

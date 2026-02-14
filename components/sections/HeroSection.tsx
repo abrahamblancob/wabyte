@@ -5,6 +5,7 @@
 
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { HERO_CONTENT } from '@/lib/constants/content';
@@ -19,9 +20,12 @@ export function HeroSection() {
                     transition={{ duration: 0.8 }}
                     className="mb-10 flex justify-center w-full"
                 >
-                    <img
+                    <Image
                         src="/logo-transparent.png"
-                        alt="Wabyte Logo"
+                        alt="Wabyte Logo - Desarrollo de Software SaaS"
+                        width={384}
+                        height={384}
+                        priority
                         className="w-72 h-72 md:w-96 md:h-96 object-contain drop-shadow-[0_0_35px_rgba(64,224,208,0.4)]"
                     />
                 </motion.div>
