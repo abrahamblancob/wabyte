@@ -7,9 +7,11 @@
 
 import { motion } from 'framer-motion';
 import { ContactForm } from '@/components/ui/ContactForm';
-import { CTA_CONTENT } from '@/lib/constants/content';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function CTASection() {
+    const { t } = useLanguage();
+
     return (
         <section id="contacto" className="py-32 relative bg-brand-dark bg-opacity-30">
             <div className="container mx-auto px-6">
@@ -21,11 +23,11 @@ export function CTASection() {
                     className="text-center max-w-3xl mx-auto"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-white mb-6">
-                        {CTA_CONTENT.headline}
+                        {t.cta.headline}
                     </h2>
 
                     <p className="text-xl text-brand-cyan mb-12 leading-relaxed">
-                        {CTA_CONTENT.subheadline}
+                        {t.cta.subheadline}
                     </p>
 
                     <ContactForm />

@@ -6,7 +6,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FOOTER_CONTENT } from '@/lib/constants/content';
+import { FOOTER_SOCIAL, FOOTER_LINKS } from '@/lib/constants/content';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const socialIcons = {
     instagram: (
@@ -17,6 +18,8 @@ const socialIcons = {
 };
 
 export function Footer() {
+    const { t } = useLanguage();
+
     return (
         <footer className="py-12 border-t border-brand-cyan border-opacity-20">
             <div className="container mx-auto px-6">
@@ -25,21 +28,21 @@ export function Footer() {
                     <div>
                         <h3 className="text-2xl font-bold text-brand-white mb-2">wabyte</h3>
                         <p className="text-brand-cyan text-opacity-80">
-                            {FOOTER_CONTENT.tagline}
+                            {t.footer.tagline}
                         </p>
                     </div>
 
                     {/* Links */}
                     <div>
-                        <h4 className="text-lg font-semibold text-brand-white mb-4">Enlaces</h4>
+                        <h4 className="text-lg font-semibold text-brand-white mb-4">{t.footer.linksHeading}</h4>
                         <ul className="space-y-2">
-                            {FOOTER_CONTENT.links.map((link) => (
-                                <li key={link.label}>
+                            {FOOTER_LINKS.map((link) => (
+                                <li key={link.key}>
                                     <a
                                         href={link.href}
                                         className="text-brand-cyan text-opacity-80 hover:text-opacity-100 transition-all"
                                     >
-                                        {link.label}
+                                        {t.footer.links[link.key as keyof typeof t.footer.links]}
                                     </a>
                                 </li>
                             ))}
@@ -48,12 +51,14 @@ export function Footer() {
 
                     {/* Social */}
                     <div>
-                        <h4 className="text-lg font-semibold text-brand-white mb-4">Síguenos</h4>
+                        <h4 className="text-lg font-semibold text-brand-white mb-4">{t.footer.followUs}</h4>
                         <div className="flex gap-4">
-                            {FOOTER_CONTENT.social.map((social) => (
+                            {FOOTER_SOCIAL.map((social) => (
                                 <motion.a
                                     key={social.platform}
                                     href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="text-brand-cyan hover:text-brand-blue transition-colors"
                                     whileHover={{ scale: 1.2, rotate: 5 }}
                                     whileTap={{ scale: 0.9 }}
@@ -68,7 +73,7 @@ export function Footer() {
 
                 <div className="border-t border-brand-cyan border-opacity-20 pt-8 text-center">
                     <p className="text-brand-cyan text-opacity-60">
-                        {FOOTER_CONTENT.copyright}
+                        {t.footer.copyright}
                     </p>
                 </div>
             </div>

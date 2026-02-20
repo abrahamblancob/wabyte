@@ -1,15 +1,17 @@
 /**
  * Navigation Bar Component
- * Sticky top navigation with links to all sections
+ * Sticky top navigation with links to all sections and language selector
  */
 
 'use client';
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const { t, locale, setLocale } = useLanguage();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,13 +22,29 @@ export function Navbar() {
     }, []);
 
     const navItems = [
-        { label: 'Inicio', href: '/#inicio' },
-        { label: 'Servicios', href: '/#servicios' },
-        { label: 'Propuesta de valor', href: '/#propuesta' },
-        { label: 'Tecnologías', href: '/#tecnologias' },
-        { label: 'Clientes', href: '/clientes' },
-        { label: 'Contacto', href: '/#contacto' },
+        { label: t.nav.inicio, href: '/#inicio' },
+        { label: t.nav.servicios, href: '/#servicios' },
+        { label: t.nav.propuesta, href: '/#propuesta' },
+        { label: t.nav.tecnologias, href: '/#tecnologias' },
+        { label: t.nav.clientes, href: '/clientes' },
+        { label: t.nav.contacto, href: '/#contacto' },
     ];
+
+    const toggleLocale = () => {
+        setLocale(locale === 'es' ? 'en' : 'es');
+    };
+
+    const LanguageToggle = () => (
+        <button
+            onClick={toggleLocale}
+            className="flex items-center gap-1 text-sm font-semibold rounded-md px-2 py-1 border border-brand-cyan border-opacity-30 hover:border-opacity-100 transition-all"
+            aria-label="Change language"
+        >
+            <span className={locale === 'es' ? 'text-brand-cyan' : 'text-brand-white text-opacity-50'}>ES</span>
+            <span className="text-brand-white text-opacity-30">|</span>
+            <span className={locale === 'en' ? 'text-brand-cyan' : 'text-brand-white text-opacity-50'}>EN</span>
+        </button>
+    );
 
     return (
         <motion.nav
@@ -66,22 +84,26 @@ export function Navbar() {
                                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-cyan group-hover:w-full transition-all duration-300" />
                             </motion.a>
                         ))}
+                        <LanguageToggle />
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <button className="md:hidden text-brand-white hover:text-brand-cyan transition-colors">
-                        <svg
-                            className="w-6 h-6"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+                    {/* Mobile: Language toggle + Menu Button */}
+                    <div className="md:hidden flex items-center gap-3">
+                        <LanguageToggle />
+                        <button className="text-brand-white hover:text-brand-cyan transition-colors">
+                            <svg
+                                className="w-6 h-6"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </motion.nav>

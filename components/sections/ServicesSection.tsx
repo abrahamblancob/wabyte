@@ -7,7 +7,8 @@
 
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
-import { SERVICES } from '@/lib/constants/content';
+import { SERVICES_META } from '@/lib/constants/content';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const iconMap = {
     code: (
@@ -28,6 +29,8 @@ const iconMap = {
 };
 
 export function ServicesSection() {
+    const { t } = useLanguage();
+
     return (
         <section id="servicios" className="py-32 relative">
             <div className="container mx-auto px-6">
@@ -39,15 +42,15 @@ export function ServicesSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-white mb-4">
-                        Nuestros servicios
+                        {t.services.heading}
                     </h2>
                     <p className="text-xl text-brand-cyan max-w-2xl mx-auto">
-                        Soluciones SaaS diseñadas para hacer crecer tu negocio
+                        {t.services.subheading}
                     </p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {SERVICES.map((service, index) => (
+                    {SERVICES_META.map((service, index) => (
                         <motion.div
                             key={service.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -60,10 +63,10 @@ export function ServicesSection() {
                                     {iconMap[service.icon as keyof typeof iconMap]}
                                 </div>
                                 <h3 className="text-2xl font-bold text-brand-white mb-4">
-                                    {service.title}
+                                    {t.services.items[index].title}
                                 </h3>
                                 <p className="text-brand-cyan text-opacity-80 leading-relaxed">
-                                    {service.description}
+                                    {t.services.items[index].description}
                                 </p>
                             </Card>
                         </motion.div>

@@ -8,9 +8,11 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
-import { HERO_CONTENT } from '@/lib/constants/content';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function HeroSection() {
+    const { t } = useLanguage();
+
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div className="container mx-auto px-6 z-10 text-center">
@@ -36,7 +38,7 @@ export function HeroSection() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-5xl md:text-7xl font-bold text-brand-white mb-6 leading-tight"
                 >
-                    {HERO_CONTENT.headline}
+                    {t.hero.headline}
                 </motion.h1>
 
                 <motion.p
@@ -45,7 +47,7 @@ export function HeroSection() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="text-xl md:text-2xl text-brand-cyan mb-12 max-w-3xl mx-auto leading-relaxed"
                 >
-                    {HERO_CONTENT.subheadline}
+                    {t.hero.subheadline}
                 </motion.p>
 
                 <motion.div
@@ -54,7 +56,7 @@ export function HeroSection() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                 >
                     <Button href="#contacto" variant="primary" size="lg">
-                        {HERO_CONTENT.cta}
+                        {t.hero.cta}
                     </Button>
                 </motion.div>
 

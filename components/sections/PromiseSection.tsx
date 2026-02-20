@@ -6,9 +6,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { PROMISE_CONTENT } from '@/lib/constants/content';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function PromiseSection() {
+    const { t } = useLanguage();
+
     return (
         <section className="py-32 relative bg-brand-dark bg-opacity-40">
             <div className="container mx-auto px-6">
@@ -20,7 +22,7 @@ export function PromiseSection() {
                     className="max-w-4xl mx-auto text-center"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-white mb-8">
-                        {PROMISE_CONTENT.headline}
+                        {t.promise.headline}
                     </h2>
 
                     <motion.div
@@ -33,7 +35,7 @@ export function PromiseSection() {
                         <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/20 to-brand-cyan/20 rounded-2xl blur-xl" />
                         <div className="relative border border-brand-cyan/30 rounded-2xl p-10 md:p-14 backdrop-blur-sm">
                             <p className="text-2xl md:text-3xl text-brand-cyan font-light leading-relaxed">
-                                {PROMISE_CONTENT.promise}
+                                {t.promise.promise}
                             </p>
                         </div>
                     </motion.div>

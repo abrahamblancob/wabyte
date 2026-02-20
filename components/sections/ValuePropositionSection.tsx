@@ -6,9 +6,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { VALUE_PROPOSITIONS, METRICS } from '@/lib/constants/content';
+import { METRICS } from '@/lib/constants/content';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function ValuePropositionSection() {
+    const { t } = useLanguage();
+
     return (
         <section className="py-32 relative bg-brand-dark bg-opacity-30">
             <div className="container mx-auto px-6">
@@ -20,11 +23,11 @@ export function ValuePropositionSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-white mb-12">
-                        Desarrolladores SaaS, constructores de ideas
+                        {t.valueProposition.heading}
                     </h2>
 
                     <div className="space-y-6 max-w-4xl mx-auto">
-                        {VALUE_PROPOSITIONS.map((proposition, index) => (
+                        {t.valueProposition.propositions.map((proposition, index) => (
                             <motion.p
                                 key={index}
                                 initial={{ opacity: 0, x: -30 }}
@@ -51,21 +54,21 @@ export function ValuePropositionSection() {
                         <div className="text-5xl md:text-6xl font-bold text-brand-blue mb-2">
                             {METRICS.experience}
                         </div>
-                        <div className="text-xl text-brand-cyan">Años de experiencia</div>
+                        <div className="text-xl text-brand-cyan">{t.valueProposition.metrics.experience}</div>
                     </div>
 
                     <div className="text-center">
                         <div className="text-5xl md:text-6xl font-bold text-brand-blue mb-2">
                             {METRICS.projects}
                         </div>
-                        <div className="text-xl text-brand-cyan">Proyectos completados</div>
+                        <div className="text-xl text-brand-cyan">{t.valueProposition.metrics.projects}</div>
                     </div>
 
                     <div className="text-center">
                         <div className="text-5xl md:text-6xl font-bold text-brand-blue mb-2">
                             {METRICS.technologies}
                         </div>
-                        <div className="text-xl text-brand-cyan">Tecnologías dominadas</div>
+                        <div className="text-xl text-brand-cyan">{t.valueProposition.metrics.technologies}</div>
                     </div>
                 </motion.div>
             </div>

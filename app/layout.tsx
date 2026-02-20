@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fira_Code } from "next/font/google";
 import Script from "next/script";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -138,7 +139,9 @@ export default function RootLayout({
                         style={{ display: 'none', visibility: 'hidden' }}
                     />
                 </noscript>
-                {children}
+                <LanguageProvider>
+                    {children}
+                </LanguageProvider>
             </body>
         </html>
     );

@@ -4,19 +4,20 @@
  */
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { TECHNOLOGIES } from '@/lib/constants/content';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 // Dynamic import for 3D component to avoid SSR issues
 const TechStackScene = dynamic(() => import('@/components/three/TechStackScene').then(mod => ({ default: mod.TechStackScene })), {
     ssr: false,
-    loading: () => <div className="w-full h-[600px] flex items-center justify-center text-brand-cyan/50">Cargando visualización 3D...</div>
+    loading: () => <div className="w-full h-[600px] flex items-center justify-center text-brand-cyan/50" />,
 });
 
 export function TechnologiesSection() {
     const [hoveredTech, setHoveredTech] = useState<string | null>(null);
-    const activeTechData = hoveredTech ? TECHNOLOGIES.find(t => t.name === hoveredTech) : null;
+    const { t } = useLanguage();
 
     return (
         <section id="tecnologias" className="py-32 relative">
@@ -29,10 +30,10 @@ export function TechnologiesSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-white mb-4">
-                        Stack Tecnológico
+                        {t.technologies.heading}
                     </h2>
                     <p className="text-xl text-brand-cyan max-w-2xl mx-auto">
-                        Herramientas modernas para soluciones escalables
+                        {t.technologies.subheading}
                     </p>
                 </motion.div>
 
@@ -40,18 +41,16 @@ export function TechnologiesSection() {
                     {/* 3D Scene - Enhanced interactive visualization */}
                     <div className="hidden md:block w-full h-[600px] bg-gradient-to-b from-transparent to-brand-dark/20 rounded-xl overflow-hidden border border-brand-cyan/10 relative">
                         <TechStackScene onHover={setHoveredTech} />
-
                     </div>
 
-                    {/* Instruction hint - Moved below the component */}
+                    {/* Instruction hint */}
                     {!hoveredTech && (
                         <div className="mt-4 text-center pointer-events-none opacity-60">
                             <span className="text-brand-cyan text-sm tracking-widest uppercase animate-pulse">
-                                Interactúa con el diseño
+                                {t.technologies.hint}
                             </span>
                         </div>
                     )}
-
 
                     {/* Mobile Grid Fallback */}
                     <div className="md:hidden mt-8 grid grid-cols-2 gap-4">
