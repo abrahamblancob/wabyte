@@ -24,7 +24,6 @@ const HeroSection = dynamic(() => import('@/components/sections/HeroSection').th
 const ServicesSection = dynamic(() => import('@/components/sections/ServicesSection').then(mod => ({ default: mod.ServicesSection })), { ssr: false });
 const ValuePropositionSection = dynamic(() => import('@/components/sections/ValuePropositionSection').then(mod => ({ default: mod.ValuePropositionSection })), { ssr: false });
 const TechnologiesSection = dynamic(() => import('@/components/sections/TechnologiesSection').then(mod => ({ default: mod.TechnologiesSection })), { ssr: false });
-const PromiseSection = dynamic(() => import('@/components/sections/PromiseSection').then(mod => ({ default: mod.PromiseSection })), { ssr: false });
 const CTASection = dynamic(() => import('@/components/sections/CTASection').then(mod => ({ default: mod.CTASection })), { ssr: false });
 const Footer = dynamic(() => import('@/components/sections/Footer').then(mod => ({ default: mod.Footer })), { ssr: false });
 const VanillaScene = dynamic(() => import('@/components/three/VanillaScene').then(mod => ({ default: mod.VanillaScene })), { ssr: false });
@@ -43,10 +42,7 @@ export default function Home() {
             <div id="inicio">
                 <HeroSection />
             </div>
-            <div id="promesa">
-                <PromiseSection />
-            </div>
-            <div id="servicios">
+<div id="servicios">
                 <ServicesSection />
             </div>
             <div id="propuesta">

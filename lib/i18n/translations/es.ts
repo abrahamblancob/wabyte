@@ -12,10 +12,6 @@ export const es = {
         subheadline: 'Todo tu negocio en un solo lugar. Sin complicaciones, sin curva de aprendizaje, sin tener que cambiar la forma en que ya trabajas. Nosotros nos adaptamos a ti.',
         cta: 'Hablemos de tu idea',
     },
-    promise: {
-        headline: 'Nuestra promesa',
-        promise: 'En menos de 2 semanas tienes toda la información de tu negocio organizada en una sola plataforma, diseñada para cómo tú trabajas.',
-    },
     services: {
         heading: 'Nuestros servicios',
         subheading: 'Soluciones SaaS diseñadas para hacer crecer tu negocio',

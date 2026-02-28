@@ -12,10 +12,6 @@ export const en = {
         subheadline: 'Your entire business in one place. No complications, no learning curve, no need to change the way you already work. We adapt to you.',
         cta: "Let's talk about your idea",
     },
-    promise: {
-        headline: 'Our promise',
-        promise: 'In less than 2 weeks, all your business information is organized in a single platform, designed around the way you work.',
-    },
     services: {
         heading: 'Our services',
         subheading: 'SaaS solutions designed to grow your business',
