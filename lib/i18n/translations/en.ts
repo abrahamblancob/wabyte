@@ -69,6 +69,13 @@ export const en = {
                     'Rhino Hub': 'B2B platform for Toyota parts suppliers in Venezuela. Upload your inventory via CSV/Excel, reach thousands of buyers, and we handle logistics, payments, and real-time stock auditing.',
                 },
             },
+            'picking-brothers': {
+                description: 'Logistics and fulfillment partner in Venezuela. SaaS solutions developed by wabyte to optimize their warehouse and dispatch operations.',
+                features: {
+                    'Picking WMS': 'Warehouse management system that organizes inventory, locations, and movements in real time. Full stock control with automatic alerts and operational reports.',
+                    'Picking Tracker': 'Real-time order tracking dashboard. From reception to dispatch, every stage of the process is recorded with full traceability.',
+                },
+            },
         },
     },
     contact: {

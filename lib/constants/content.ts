@@ -41,6 +41,18 @@ export const CLIENTS = [
             { name: 'Rhino Hub', icon: 'hub' },
         ],
     },
+    {
+        id: 'picking-brothers',
+        name: 'Picking Brothers',
+        logo: 'https://www.pickingbrothers.com/logo.png',
+        website: 'https://www.pickingbrothers.com',
+        brandColor: '#0D1B4A',
+        brandColorLight: '#FF8C00',
+        features: [
+            { name: 'Picking WMS', icon: 'hub' },
+            { name: 'Picking Tracker', icon: 'vision' },
+        ],
+    },
 ] as const;
 
 export const FOOTER_SOCIAL = [

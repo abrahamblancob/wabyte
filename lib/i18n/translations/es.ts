@@ -69,6 +69,13 @@ export const es = {
                     'Rhino Hub': 'Plataforma B2B para proveedores de repuestos Toyota en Venezuela. Sube tu inventario en CSV/Excel, llega a miles de compradores, y nosotros gestionamos logística, pagos y auditoría de stock en tiempo real.',
                 },
             },
+            'picking-brothers': {
+                description: 'Aliado en logística y fulfillment en Venezuela. Soluciones SaaS desarrolladas por wabyte para optimizar su operación de almacén y despacho.',
+                features: {
+                    'Picking WMS': 'Sistema de gestión de almacén que organiza inventario, ubicaciones y movimientos en tiempo real. Control total del stock con alertas automáticas y reportes operativos.',
+                    'Picking Tracker': 'Panel de seguimiento de pedidos en tiempo real. Desde la recepción hasta el despacho, cada etapa del proceso queda registrada con trazabilidad completa.',
+                },
+            },
         },
     },
     contact: {
