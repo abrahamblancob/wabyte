@@ -76,6 +76,13 @@ export const en = {
                     'Picking Tracker': 'Real-time order tracking dashboard. From reception to dispatch, every stage of the process is recorded with full traceability.',
                 },
             },
+            'dddare': {
+                description: 'Payroll loan fintech. Digital ecosystem developed by wabyte: a web platform integrated with a mobile app covering the full process, from application to disbursement.',
+                features: {
+                    'DDDare Web': 'Web portal for applicants and affiliated companies. Manage requests, validate payroll, approve credits, and track payments from any browser.',
+                    'DDDare App': 'Mobile app integrated end-to-end with the portal. Users request, sign, and receive real-time loan notifications — no friction between web and mobile.',
+                },
+            },
         },
     },
     contact: {

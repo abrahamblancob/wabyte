@@ -53,6 +53,18 @@ export const CLIENTS = [
             { name: 'Picking Tracker', icon: 'vision' },
         ],
     },
+    {
+        id: 'dddare',
+        name: 'DDDare',
+        logo: 'https://www.dddare.net/brand/icon-1024.png',
+        website: 'https://www.dddare.net',
+        brandColor: '#0d2b6b',
+        brandColorLight: '#10a0c7',
+        features: [
+            { name: 'DDDare Web', icon: 'web' },
+            { name: 'DDDare App', icon: 'mobile' },
+        ],
+    },
 ] as const;
 
 export const FOOTER_SOCIAL = [

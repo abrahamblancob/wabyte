@@ -76,6 +76,13 @@ export const es = {
                     'Picking Tracker': 'Panel de seguimiento de pedidos en tiempo real. Desde la recepción hasta el despacho, cada etapa del proceso queda registrada con trazabilidad completa.',
                 },
             },
+            'dddare': {
+                description: 'Fintech de préstamos de nómina. Ecosistema digital desarrollado por wabyte: una plataforma web integrada con una aplicación móvil que cubre todo el proceso, desde la solicitud hasta el desembolso.',
+                features: {
+                    'DDDare Web': 'Portal web para solicitantes y empresas afiliadas. Gestiona solicitudes, valida nómina, aprueba créditos y hace seguimiento de pagos desde cualquier navegador.',
+                    'DDDare App': 'Aplicación móvil integrada end-to-end con el portal. El usuario solicita, firma y recibe notificaciones de su préstamo en tiempo real, sin fricción entre web y móvil.',
+                },
+            },
         },
     },
     contact: {
