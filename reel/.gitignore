@@ -1,0 +1,6 @@
+node_modules/
+out/frames/
+out/*.webm
+out/raw.*
+out/sample-*.png
+out/probe.png
