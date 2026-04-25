@@ -4,14 +4,20 @@ export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://www.wabyte.net';
+    const lastModified = new Date();
 
     return [
         {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
+            url: `${baseUrl}/`,
+            lastModified,
+            changeFrequency: 'weekly',
             priority: 1,
         },
-        // Add more routes here as the site grows
+        {
+            url: `${baseUrl}/clientes`,
+            lastModified,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
     ];
 }

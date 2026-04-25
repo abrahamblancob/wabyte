@@ -1,16 +1,21 @@
 /**
  * Clients Page
- * Showcases wabyte's clients and the SaaS solutions built for them
+ *
+ * Server Component: pre-renders the clients section content at build time
+ * so the page ships HTML with real text/headings to crawlers. Three.js
+ * background remains client-only.
  */
 
-'use client';
+import { Navbar } from '@/components/ui/Navbar';
+import { ClientsSection } from '@/components/sections/ClientsSection';
+import { Footer } from '@/components/sections/Footer';
+import { VanillaScene } from '@/components/three/VanillaScene';
 
-import dynamic from 'next/dynamic';
-
-const Navbar = dynamic(() => import('@/components/ui/Navbar').then(mod => ({ default: mod.Navbar })), { ssr: false });
-const ClientsSection = dynamic(() => import('@/components/sections/ClientsSection').then(mod => ({ default: mod.ClientsSection })), { ssr: false });
-const Footer = dynamic(() => import('@/components/sections/Footer').then(mod => ({ default: mod.Footer })), { ssr: false });
-const VanillaScene = dynamic(() => import('@/components/three/VanillaScene').then(mod => ({ default: mod.VanillaScene })), { ssr: false });
+export const metadata = {
+    title: 'Clientes',
+    description: 'Empresas que confían en wabyte para sus soluciones SaaS: Rhino Toyo Parts, Picking Brothers, DDDare y más.',
+    alternates: { canonical: '/clientes' },
+};
 
 export default function ClientesPage() {
     return (
